@@ -1,0 +1,28 @@
+{
+  "name": "chat-room",
+  "version": "1.0.0",
+  "description": "A basic chat room",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "proxy": "http://localhost:4000/",
+  "author": "Jacob Reynolds",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reyno120/chat-room/issues"
+  },
+  "homepage": "https://github.com/reyno120/chat-room#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "socket.io": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
