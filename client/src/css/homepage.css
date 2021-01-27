@@ -1,0 +1,101 @@
+.rooms {
+    background-color: rgb(255, 255, 255, 0.15);
+    width: 30em;
+    height: 22.5em;
+    margin: auto;
+    border-radius: 1em;
+    backdrop-filter: blur(15px);
+    background-clip: padding-box;
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
+  .space {
+    width: 100%;
+    height: 3em;
+  }
+  form {
+    background-color: rgb(255, 255, 255, 0.15);
+    border-radius: .8em;
+    backdrop-filter: blur(15px);
+    background-clip: padding-box;
+    width: 38em;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 3em;
+  }
+  #username {
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(255, 255, 255, 0);
+    color: white;
+    border: solid white 1px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+  }
+  #username:focus {
+    outline: white;
+    border: solid white 2px;
+  }
+  #username:active {
+    outline: white;
+    border: solid white 2px;
+  }
+  #username-label {
+    color: white;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-right: 0.5em;
+  }
+  .room {
+    background-color: rgb(255, 255, 255, 0.65);
+    width: 25em;
+    height: 3.5em;
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 8px;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+  }
+  .room:hover {
+    background-color: rgb(255, 255, 255, 0.75);
+    width: 25.4em;
+    height: 3.9em;
+  }
+  .room p {
+    padding-left: .5em;
+    font-weight: bold;
+    position: relative;
+    top: 5%;
+    width: 10.7em;
+    text-align: left;
+  }
+  .coffee-icon {
+    width: 10%;
+    height: 80%;
+    position: relative;
+    top: 5%;
+  }
+  
+  .usercount {
+    border: solid black 1px;
+    height: 50%;
+    width: 3.5em;
+    margin-left: 1.5em;
+    position: relative;
+    top: 25%;
+  }
+  .user-icon {
+    width: 1.4em;
+    text-align: left;
+    position: relative;
+    right: 15%;
+    top: 10%;
+  }
+  .arrow-icon {
+    width: 8%;
+    height: 70%;
+    margin-left: 2.5em;
+    position: relative;
+    top: 15%;
+  }

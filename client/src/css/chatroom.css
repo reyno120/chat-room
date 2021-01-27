@@ -1,0 +1,92 @@
+.chatroom {
+    max-width: 1168px;
+    width: 61vw;
+    margin: auto;
+    padding-top: 4em;
+}
+.chatroom-header {
+    width: 100%;
+    height: 5em;
+    background-color: rgb(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    background-clip: padding-box;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+}
+.chatroom-header img {
+    margin-left: 0.5em;
+}
+.chatroom-header p {
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 1em;
+}
+.chatroom-header button {
+    height: 2em;
+    border-radius: 5px;
+    border: solid white 1px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    font-size: 1.125rem;
+    margin-right: 1em;
+    margin-top: 1.2em;
+    cursor: pointer;
+}
+.chatroom-header button:hover {
+    border: solid white 2px;
+}
+.chatroom-header button:focus {
+    outline: none;
+}
+.leave-room-button-container {
+    margin-left: auto;
+}
+.chatroom-body {
+    display: flex;
+    height: 74vh;
+}
+.chatroom-users {
+    width: 20%;
+    background-color: rgba(151, 151, 151, 0.1);
+    backdrop-filter: blur(15px);
+    background-clip: padding-box;
+    border-radius: 0 0 0 15px;
+}
+.chatroom-messages {
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(15px);
+    background-clip: padding-box;
+    border-radius: 0 0 15px 0;
+}
+#chat-icon {
+    width: 60px;
+}
+.chatroom-users h1 {
+    font-size: 1.5rem;
+    color: #ff00CC;
+    font-weight: bold;
+    padding-bottom: 0.5em;
+    border-bottom: solid #A5A5A5 1px;
+}
+.chatroom-users p {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+@media screen and (max-width: 1366px) {
+    .chatroom-header {
+        height: 4em;
+    }
+    .chatroom-header p {
+        font-size: 1.2rem;
+        color: white;
+        margin-left: 1em;
+    }
+    .chatroom-header button {
+        margin-right: 1em;
+        height: 1.8em;
+        font-size: 1rem;
+    }
+}
