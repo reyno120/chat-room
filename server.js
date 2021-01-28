@@ -12,11 +12,29 @@ const io = socketio(server, {
     }
 });
 
-io.on('connection', (socket) => {
-    console.log('user has connected');
+var users = [];
 
-    socket.on("chat message", (msg) => {
-        console.log(msg);
+io.on('connection', (socket) => {
+    // join room and broadcast to room
+    socket.on('join room', ({ username, room }) => {
+        socket.join(room);
+        var roomUsers = users.filter(user => room === room);
+        users.push({username: room});
+
+        socket.broadcast
+            .to(room)
+            .emit(
+                'message',
+                `${username} has joined the room!`
+            );
+
+    
+        io.to(room).emit('roomDetails', roomUsers);
+    });
+
+    // listen for messages from client and send them to correct room
+    socket.on('chat message', ({ msg, user, room }) => {
+        io.to(room).emit('message', msg);
     });
 });
 

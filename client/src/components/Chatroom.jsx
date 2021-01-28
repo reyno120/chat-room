@@ -1,10 +1,10 @@
 import '../css/chatroom.css';
 import chatIcon from '../images/chat-icon.svg';
 
-function Chatroom() {
+function Chatroom(props) {
 
     return (
-        <div className="chatroom">
+        <div className={`chatroom ${props.transition}`}>
             <div className="chatroom-header">
                 <img id="chat-icon" src={chatIcon} alt="chat icon" />
                 <p>Chatroom Latte</p>

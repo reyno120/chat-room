@@ -7,7 +7,7 @@ import arrowIcon from '../images/right-arrow-icon.png';
 
 function Homepage(props) {
     return (
-        <div className="homepage">
+        <div className={`homepage ${props.transition}`}>
             <div className="space"></div>
 
             <form onSubmit={props.onSubmit} autoComplete="off">
@@ -17,35 +17,35 @@ function Homepage(props) {
 
             <div className="rooms">
 
-            <div className="americano-room room">
+            <div className="americano-room room" onClick={() => {props.handleClick('americano')}}>
                 <img className="coffee-icon" src={coffeePhoto1} alt="Coffee cup"></img>
                 <p>Chatroom Americano</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="latte-room room">
+            <div className="latte-room room" onClick={() => {props.handleClick('latte')}}>
                 <img className="coffee-icon" src={coffeePhoto2} alt="Coffee cup"></img>
                 <p>Chatroom Latte</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="cappuccino-room room">
+            <div className="cappuccino-room room" onClick={() => {props.handleClick('cappuccino')}}>
                 <img className="coffee-icon" src={coffeePhoto3} alt="Coffee cup"></img>
                 <p>Chatroom Cappuccino</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="cortado-room room">
+            <div className="cortado-room room" onClick={() => {props.handleClick('cortado')}}>
                 <img className="coffee-icon" src={coffeePhoto1} alt="Coffee cup"></img>
                 <p>Chatroom Cortado</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="ristretto-room room">
+            <div className="ristretto-room room" onClick={() => {props.handleClick('ristretto')}}>
                 <img className="coffee-icon" src={coffeePhoto2} alt="Coffee cup"></img>
                 <p>Chatroom Ristretto</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
