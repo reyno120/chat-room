@@ -8,6 +8,7 @@
   font-family: 'Quicksand', sans-serif;
   margin-top: 0;
   position: relative;
+  overflow-x: hidden;
 }
 .homepage {
   /* display: none; */
@@ -16,6 +17,7 @@
   display: none;
   position: absolute;
 }
+
 .slideLeftOut {
   animation: slideLeftOut 1s forwards;
 }
@@ -42,6 +44,41 @@
 @keyframes slideLeftIn {
   0% {
     transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/***/
+.slideRightOut {
+  display: block;
+  top: 0;
+  left: 19%;
+  z-index: 9;
+  backdrop-filter: blur(15px);
+  animation: slideRightOut 1s forwards;
+}
+
+@keyframes slideRightOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(150%);
+    visibility: hidden;
+  }
+}
+
+.slideRightIn {
+  display: block;
+  animation: slideRightIn 1s forwards;
+}
+
+@keyframes slideRightIn {
+  0% {
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(0);

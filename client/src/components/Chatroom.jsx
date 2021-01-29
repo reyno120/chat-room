@@ -9,7 +9,7 @@ function Chatroom(props) {
                 <img id="chat-icon" src={chatIcon} alt="chat icon" />
                 <p>Chatroom Latte</p>
                 <div className="leave-room-button-container">
-                    <button>Leave Room</button>
+                    <button onClick={props.handleClick}>Leave Room</button>
                 </div>
             </div>
 

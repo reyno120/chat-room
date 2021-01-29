@@ -24,12 +24,19 @@ function App() {
     setUsername(e.target.value);
   }
 
-  function handleClick(room) {
+  function handleJoinRoom(room) {
     setRoom(room);
     socket.emit('join room', {username, room});
 
     setHomepageTransition('slideLeftOut');
     setChatroomTransition('slideLeftIn');
+  }
+
+  function handleLeaveRoom() {
+    setRoom('');
+    // need to disconnect
+    setHomepageTransition('slideRightIn');
+    setChatroomTransition('slideRightOut');
   }
 
   socket.on('roomDetails', roomUsers => {
@@ -44,8 +51,8 @@ function App() {
 
   return (
     <div className="App">
-      <Homepage transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleClick} username={username} />
-      <Chatroom transition={chatroomTransition} room={room} username={username} />
+      <Homepage transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleJoinRoom} username={username} />
+      <Chatroom transition={chatroomTransition} room={room} username={username} handleClick={handleLeaveRoom} />
     </div>
   );
 }
