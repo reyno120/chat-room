@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
+const moment = require('moment');
 
 const app = express();
 const server = http.createServer(app);
@@ -34,7 +35,12 @@ io.on('connection', (socket) => {
 
     // listen for messages from client and send them to correct room
     socket.on('chat message', ({ msg, user, room }) => {
-        io.to(room).emit('message', msg);
+        // console.log(msg + ", emitting");
+        io.to(room).emit('message', {
+            msg: msg,
+            user: user,
+            time: moment().format('h:mm a')
+        });
     });
 });
 

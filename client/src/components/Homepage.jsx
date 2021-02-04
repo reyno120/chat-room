@@ -17,35 +17,35 @@ function Homepage(props) {
 
             <div className="rooms">
 
-            <div className="americano-room room" onClick={() => {props.handleClick('americano')}}>
+            <div className="americano-room room" onClick={() => {props.handleClick('Americano')}}>
                 <img className="coffee-icon" src={coffeePhoto1} alt="Coffee cup"></img>
                 <p>Chatroom Americano</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="latte-room room" onClick={() => {props.handleClick('latte')}}>
+            <div className="latte-room room" onClick={() => {props.handleClick('Latte')}}>
                 <img className="coffee-icon" src={coffeePhoto2} alt="Coffee cup"></img>
                 <p>Chatroom Latte</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="cappuccino-room room" onClick={() => {props.handleClick('cappuccino')}}>
+            <div className="cappuccino-room room" onClick={() => {props.handleClick('Cappuccino')}}>
                 <img className="coffee-icon" src={coffeePhoto3} alt="Coffee cup"></img>
                 <p>Chatroom Cappuccino</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="cortado-room room" onClick={() => {props.handleClick('cortado')}}>
+            <div className="cortado-room room" onClick={() => {props.handleClick('Cortado')}}>
                 <img className="coffee-icon" src={coffeePhoto1} alt="Coffee cup"></img>
                 <p>Chatroom Cortado</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>
                 <img className="arrow-icon" src={arrowIcon} alt="Right arrow"></img>
             </div>
 
-            <div className="ristretto-room room" onClick={() => {props.handleClick('ristretto')}}>
+            <div className="ristretto-room room" onClick={() => {props.handleClick('Ristretto')}}>
                 <img className="coffee-icon" src={coffeePhoto2} alt="Coffee cup"></img>
                 <p>Chatroom Ristretto</p>
                 <div className="usercount"><img className="user-icon" src={userIcon} alt="User Icon"></img>0</div>

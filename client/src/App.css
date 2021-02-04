@@ -10,9 +10,6 @@
   position: relative;
   overflow-x: hidden;
 }
-.homepage {
-  /* display: none; */
-}
 .chatroom {
   display: none;
   position: absolute;

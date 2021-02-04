@@ -13,7 +13,7 @@
     width: 100%;
     height: 3em;
   }
-  form {
+  .homepage form {
     background-color: rgb(255, 255, 255, 0.15);
     border-radius: .8em;
     backdrop-filter: blur(15px);

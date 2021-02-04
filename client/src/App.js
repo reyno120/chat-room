@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import socketio from "socket.io-client";
 import Homepage from './components/Homepage.jsx';
 import Chatroom from './components/Chatroom.jsx';
@@ -11,8 +11,8 @@ const socket = socketio('http://localhost:4000', {
 function App() {
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
-  const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [homepageTransition, setHomepageTransition] = useState('');
   const [chatroomTransition, setChatroomTransition] = useState('');
 
@@ -33,26 +33,26 @@ function App() {
   }
 
   function handleLeaveRoom() {
-    setRoom('');
+    // setRoom('');
     // need to disconnect
     setHomepageTransition('slideRightIn');
     setChatroomTransition('slideRightOut');
   }
 
-  socket.on('roomDetails', roomUsers => {
-    setUsers(roomUsers);
-  });
+  // socket.on('roomDetails', roomUsers => {
+  //   setUsers(roomUsers);
+  // });
 
-  socket.on('chat message', msg => {
-    var messages = messages;
-    messages.push(msg);
-    setMessages(messages);
-  });
+  // socket.on('chat message', msg => {
+  //   var messages = messages;
+  //   messages.push(msg);
+  //   setMessages(messages);
+  // });
 
   return (
     <div className="App">
-      <Homepage transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleJoinRoom} username={username} />
-      <Chatroom transition={chatroomTransition} room={room} username={username} handleClick={handleLeaveRoom} />
+      <Homepage transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleJoinRoom} username={username} room={room} />
+      <Chatroom socket={socket} transition={chatroomTransition} room={room} username={username} handleClick={handleLeaveRoom} />
     </div>
   );
 }

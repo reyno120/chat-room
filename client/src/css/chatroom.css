@@ -25,7 +25,7 @@
     height: 2em;
     border-radius: 5px;
     border: solid white 1px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
     color: white;
     font-size: 1.125rem;
     margin-right: 1em;
@@ -75,6 +75,33 @@
     margin-top: 0;
     margin-bottom: 0.5em;
 }
+.chatroom-input {
+    position: absolute;
+    bottom: 2em;
+    width: 60%;
+}
+.chatroom-input input {
+    border: solid white 1px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    width: 100%;
+    height: 2.5em;
+    margin-left: 2em;
+    color: #D4D4D4;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.125rem;
+    word-wrap: break-word;
+}
+.chatroom-input input:focus {
+    outline: none;
+}
+.chatroom-input input::placeholder {
+    color: #D4D4D4;
+}
+.chatroom-messages p {
+    color: white;
+}
 @media screen and (max-width: 1366px) {
     .chatroom-header {
         height: 4em;
@@ -88,5 +115,8 @@
         margin-right: 1em;
         height: 1.8em;
         font-size: 1rem;
+    }
+    .chatroom-users h1 {
+        font-size: 1.2rem;
     }
 }
