@@ -37,6 +37,17 @@ function App() {
     // need to disconnect
     setHomepageTransition('slideRightIn');
     setChatroomTransition('slideRightOut');
+    socket.disconnect();
+
+    var messages = document.getElementsByClassName('new-message-container');
+    setTimeout(function() { 
+      while(messages[0]) {
+        messages[0].parentNode.removeChild(messages[0]);
+      } 
+    }, 1000);
+
+
+    socket.connect();
   }
 
   // socket.on('roomDetails', roomUsers => {
