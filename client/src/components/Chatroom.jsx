@@ -11,27 +11,64 @@ class Chatroom extends Component {
     }
 
     componentDidMount() {
-        this.props.socket.on('message', msg => {
-            console.log(msg);
-            const div = document.createElement('div');
-            this.props.user === msg.user ? div.classList.add('user-message') :
-                                           div.classList.add('group-message');
-            const timeP = document.createElement('p');
-            timeP.innerText = msg.time;
-            div.appendChild(timeP);
+        console.log("mounting");
 
+        this.props.socket.on('message', msg => {
+            // console.log(msg);
+
+            /* 
+            <div className="user-message" || 'group-message'>
+                <p className="message-header">{timeP}</p>
+                <p className="message">{message}</p>
+             </div> 
+             */
+
+            // create message p
             var message = document.createElement('p');
             message.innerText = msg.msg;
-            div.appendChild(message);
+            message.classList.add('message');
+
+            // create header p
+            const messageHeader = document.createElement('p');
+            messageHeader.classList.add("message-header");
+            messageHeader.innerHTML = `${msg.user}<span> - ${msg.time}</span>`;
+
+            // create new div and append header and message
+            const div = document.createElement('div');
+            div.style.width = this.props.username.length > message.innerText.length ? 
+                              this.props.username.length * 16 + 'px' : 
+                              message.innerText.length * 16 + 'px';     // set message box based off text length
+            console.log(div.style.width);
+            this.props.username === msg.user ? div.classList.add('user-message') :
+                                           div.classList.add('group-message');
+
+
+
+            // the following creates a new container with display: flex and appends it to
+            // the chatroom-messages so that user messages are pushed right and
+            // group messages are push left
             var element = document.getElementsByClassName("chatroom-messages")[0];
-            element.appendChild(div)
+            div.appendChild(messageHeader);
+            div.appendChild(message);
+
+            var container = document.createElement('div');
+            container.classList.add('new-message-container');
+            var newDiv = document.createElement('div');
+
+            if(this.props.username === msg.user) {
+                container.appendChild(newDiv);
+                container.appendChild(div);
+            }
+            else {
+                container.appendChild(div);
+                container.appendChild(newDiv);
+            }
+            // element.appendChild(div);
+            element.appendChild(container);
 
 
-            // var newMessage = document.createElement("p");
-            // var content = document.createTextNode(msg.msg);
-            // newMessage.appendChild(content);
-            // var element = document.getElementsByClassName("chatroom-messages")[0];
-            // element.appendChild(newMessage);
+
+            element.scrollTop = element.scrollHeight;   // always scroll to bottom of messages
         });
 
         this.props.socket.on('roomDetails', roomUsers => {
@@ -77,15 +114,16 @@ class Chatroom extends Component {
                         <p>user3</p>
                     </div>
 
-                    <div>
-                        <div className="chatroom-messages">
-                        </div>
+                    <div className="chatroom-messages-container">
+
+                        <div className="chatroom-messages"></div>
 
                         <div className="chatroom-input">
                             <form onSubmit={this.handleSubmit}>
                                 <input value={this.state.currentMessage} onChange={this.handleChange} placeholder="Type something..." />
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -94,91 +132,3 @@ class Chatroom extends Component {
 }
  
 export default Chatroom;
-
-
-
-// function Chatroom(props) {
-//     const [users, setUsers] = useState([]);
-//     const [messages, setMessages] = useState([]);
-//     const [currentMessage, setCurrentMessage] = useState([]);
-
-//     var socket = props.socket;
-
-//     socket.on('roomDetails', roomUsers => {
-//         setUsers(roomUsers);
-//     });
-
-//     console.log("rererendering");
-
-//     useEffect(() => {
-//         socket.on('message', msg => {
-//             console.log("rendered");
-//             // var msgs = messages;
-//             // msgs.push(msg);
-//             // setMessages(msgs);
-//             // setMessages([...messages, msg]);
-//             var newMessage = document.createElement("p");
-//             var content = document.createTextNode(msg);
-//             newMessage.appendChild(content);
-//             var element = document.getElementsByClassName("chatroom-messages")[0];
-//             element.appendChild(newMessage);
-//         });
-//     });
-    
-
-//     function handleChange(e) {
-//         setCurrentMessage(e.target.value);
-//     }
-
-//     function handleSubmit(e) {
-//         e.preventDefault();
-
-//         if(currentMessage !== '') {
-//             socket.emit('chat message', {
-//                 msg: currentMessage, 
-//                 user: props.user, 
-//                 room: props.room
-//             });
-//         }
-//         setCurrentMessage('');
-//     }
-
-//     return (
-//         <div className={`chatroom ${props.transition}`}>
-//             <div className="chatroom-header">
-//                 <img id="chat-icon" src={chatIcon} alt="chat icon" />
-//                 <p>Chatroom {props.room}</p>
-//                 <div className="leave-room-button-container">
-//                     <button onClick={props.handleClick}>Leave Room</button>
-//                 </div>
-//             </div>
-
-//             <div className="chatroom-body">
-//                 <div className="chatroom-users">
-//                     <h1>{props.username}</h1>
-//                     <p>user1</p>
-//                     <p>user2</p>
-//                     <p>user3</p>
-//                 </div>
-
-//                 <div>
-//                     <div className="chatroom-messages">
-//                         {messages.map(msg => 
-//                         <p>
-//                             {msg}
-//                         </p>
-//                         )}
-//                     </div>
-
-//                     <div className="chatroom-input">
-//                         <form onSubmit={handleSubmit}>
-//                             <input value={currentMessage} onChange={handleChange} placeholder="Type something..." />
-//                         </form>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default Chatroom;

@@ -18,6 +18,7 @@ var users = [];
 io.on('connection', (socket) => {
     // join room and broadcast to room
     socket.on('join room', ({ username, room }) => {
+        console.log("joining room: " + room);
         socket.join(room);
         var roomUsers = users.filter(user => room === room);
         users.push({username: room});
