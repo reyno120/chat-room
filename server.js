@@ -18,10 +18,15 @@ var users = [];
 io.on('connection', (socket) => {
     // join room and broadcast to room
     socket.on('join room', ({ username, room }) => {
-        console.log("joining room: " + room);
+        // console.log("joining room: " + room);
         socket.join(room);
-        var roomUsers = users.filter(user => room === room);
-        users.push({username: room});
+        users.push({
+            username: username,
+            room: room,
+            id: socket.id
+        });
+        var roomUsers = users.filter(user => user.room === room);
+        // console.log(roomUsers);
 
         socket.broadcast
             .to(room)
@@ -42,6 +47,21 @@ io.on('connection', (socket) => {
             user: user,
             time: moment().format('h:mm a')
         });
+    });
+
+    socket.on('disconnect', () => {
+        var index = users.findIndex(user => user.id === socket.id);
+        thisUser = users[index];
+
+        if(index !== -1) {
+            console.log(users);
+            users.splice(index, 1)[0];
+            console.log(users);
+            var roomUsers = users.filter(user => user.room === thisUser.room);
+            io.to(thisUser.room).emit('roomDetails', roomUsers);
+            return users;
+
+        }
     });
 });
 

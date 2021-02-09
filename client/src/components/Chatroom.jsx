@@ -11,8 +11,6 @@ class Chatroom extends Component {
     }
 
     componentDidMount() {
-        console.log("mounting");
-
         this.props.socket.on('message', msg => {
             // console.log(msg);
 
@@ -38,7 +36,6 @@ class Chatroom extends Component {
             div.style.width = this.props.username.length > message.innerText.length ? 
                               this.props.username.length * 16 + 'px' : 
                               message.innerText.length * 16 + 'px';     // set message box based off text length
-            console.log(div.style.width);
             this.props.username === msg.user ? div.classList.add('user-message') :
                                            div.classList.add('group-message');
 
@@ -72,6 +69,7 @@ class Chatroom extends Component {
         });
 
         this.props.socket.on('roomDetails', roomUsers => {
+            console.log(roomUsers);
             this.setState({users: roomUsers});
         });
     }
@@ -95,6 +93,7 @@ class Chatroom extends Component {
         this.setState({currentMessage: ''});
     }
 
+
     render() { 
         return (  
             <div className={`chatroom ${this.props.transition}`}>
@@ -109,9 +108,15 @@ class Chatroom extends Component {
                 <div className="chatroom-body">
                     <div className="chatroom-users">
                         <h1>{this.props.username}</h1>
-                        <p>user1</p>
-                        <p>user2</p>
-                        <p>user3</p>
+                        <div className="chatroom-users-list">
+                            {
+                                this.state.users.map((user) => 
+                                    {if(user.username !== this.props.username) return (
+                                        <p>{user.username}</p>
+                                    )}
+                                )
+                            }
+                        </div>
                     </div>
 
                     <div className="chatroom-messages-container">
