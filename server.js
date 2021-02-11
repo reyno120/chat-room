@@ -44,7 +44,12 @@ io.on('connection', (socket) => {
             .to(room)
             .emit(
                 'message',
-                `${username} has joined the room!`
+                {
+                    msg: `${username} has joined the chat!`,
+                    user: 'Chat Manager',
+                    time: moment().format('h:mm a')
+                }
+                
             );
 
     
@@ -81,6 +86,18 @@ io.on('connection', (socket) => {
         thisUser = users[index];
 
         if(index !== -1) {
+            socket.broadcast
+                .to(thisUser.room)
+                .emit(
+                    'message',
+                    {
+                        msg: `${thisUser.username} has left the chat.`,
+                        user: 'Chat Manager',
+                        time: moment().format('h:mm a')
+                    }
+                    
+                );
+
             users.splice(index, 1)[0];
             var roomUsers = users.filter(user => user.room === thisUser.room);
             io.to(thisUser.room).emit('roomDetails', roomUsers);

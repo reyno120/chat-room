@@ -78,7 +78,7 @@ function Homepage(props) {
                     break;
             }
         });
-    }, []);
+    }, [socket]);
 
     return (
         <div className={`homepage ${props.transition}`}>
