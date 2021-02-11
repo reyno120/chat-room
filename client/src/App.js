@@ -26,17 +26,18 @@ function App() {
   }
 
   function handleJoinRoom(room) {
-    setRoom(room);
-    socket.emit('join room', {username, room});
-
-    setHomepageTransition('slideLeftOut');
-    setChatroomTransition('slideLeftIn');
+    if(username !== '') {
+      setRoom(room);
+      socket.emit('join room', {username, room});
+  
+      setHomepageTransition('slideLeftOut');
+      setChatroomTransition('slideLeftIn');
+    }
   }
 
   function handleLeaveRoom() {
     setHomepageTransition('slideRightIn');
     setChatroomTransition('slideRightOut');
-    // socket.disconnect();
     socket.emit('leaveRoom');
 
     var messages = document.getElementsByClassName('new-message-container');
@@ -45,20 +46,7 @@ function App() {
         messages[0].parentNode.removeChild(messages[0]);
       } 
     }, 1000);
-
-
-    // socket.connect();
   }
-
-  // socket.on('roomDetails', roomUsers => {
-  //   setUsers(roomUsers);
-  // });
-
-  // socket.on('chat message', msg => {
-  //   var messages = messages;
-  //   messages.push(msg);
-  //   setMessages(messages);
-  // });
 
   return (
     <div className="App">

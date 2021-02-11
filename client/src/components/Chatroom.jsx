@@ -112,7 +112,7 @@ class Chatroom extends Component {
                             {
                                 this.state.users.map((user) => 
                                     {if(user.username !== this.props.username) return (
-                                        <p>{user.username}</p>
+                                        <p key={user.username}>{user.username}</p>
                                     )}
                                 )
                             }

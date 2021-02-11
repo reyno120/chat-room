@@ -31,6 +31,7 @@
     border: solid white 1px;
     border-radius: 10px;
     font-size: 1.5rem;
+    padding-left: 0.25em;
   }
   #username:focus {
     outline: white;
@@ -98,4 +99,17 @@
     margin-left: 2.5em;
     position: relative;
     top: 15%;
+  }
+  .disable-room {
+    background-color: rgba(173, 173, 173, 0.65);
+  }
+  .disable-room:hover {
+    width: 25em;
+    height: 3.5em;
+    background-color: rgba(173, 173, 173, 0.65);
+  }
+  .disable-room:hover {
+    width: 25em;
+    height: 3.5em;
+    background-color: rgba(173, 173, 173, 0.65);
   }
