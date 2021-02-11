@@ -16,6 +16,7 @@ function App() {
   const [homepageTransition, setHomepageTransition] = useState('');
   const [chatroomTransition, setChatroomTransition] = useState('');
 
+
   function onSubmit(e) {
     e.preventDefault();
   }
@@ -33,11 +34,10 @@ function App() {
   }
 
   function handleLeaveRoom() {
-    // setRoom('');
-    // need to disconnect
     setHomepageTransition('slideRightIn');
     setChatroomTransition('slideRightOut');
-    socket.disconnect();
+    // socket.disconnect();
+    socket.emit('leaveRoom');
 
     var messages = document.getElementsByClassName('new-message-container');
     setTimeout(function() { 
@@ -47,7 +47,7 @@ function App() {
     }, 1000);
 
 
-    socket.connect();
+    // socket.connect();
   }
 
   // socket.on('roomDetails', roomUsers => {
@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <Homepage transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleJoinRoom} username={username} room={room} />
+      <Homepage socket={socket} transition={homepageTransition} handleChange={handleChange} onSubmit={onSubmit} handleClick={handleJoinRoom} username={username} room={room} />
       <Chatroom socket={socket} transition={chatroomTransition} room={room} username={username} handleClick={handleLeaveRoom} />
     </div>
   );

@@ -2,6 +2,7 @@ import '../css/chatroom.css';
 // import React, { useState, useEffect } from 'react';
 import React, { Component } from 'react';
 import chatIcon from '../images/chat-icon.svg';
+import returnIcon from '../images/return-icon.svg';
 
 
 class Chatroom extends Component {
@@ -69,7 +70,6 @@ class Chatroom extends Component {
         });
 
         this.props.socket.on('roomDetails', roomUsers => {
-            console.log(roomUsers);
             this.setState({users: roomUsers});
         });
     }
@@ -127,6 +127,9 @@ class Chatroom extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <input value={this.state.currentMessage} onChange={this.handleChange} placeholder="Type something..." />
                             </form>
+                        </div>
+                        <div className="return-button" onClick={this.handleSubmit}>
+                                <img src={returnIcon} alt="Return arrow" />
                         </div>
 
                     </div>

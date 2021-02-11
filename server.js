@@ -16,9 +16,22 @@ const io = socketio(server, {
 var users = [];
 
 io.on('connection', (socket) => {
+    // send initial number of users per room to client
+    var room1Users = users.filter(user => user.room === 'Americano');
+    var room2Users = users.filter(user => user.room === 'Latte');
+    var room3Users = users.filter(user => user.room === 'Cappuccino');
+    var room4Users = users.filter(user => user.room === 'Cortado');
+    var room5Users = users.filter(user => user.room === 'Ristretto');
+    socket.emit('initialCount', {
+        room1Users: room1Users.length,
+        room2Users: room2Users.length,
+        room3Users: room3Users.length,
+        room4Users: room4Users.length,
+        room5Users: room5Users.length
+    });
+
     // join room and broadcast to room
     socket.on('join room', ({ username, room }) => {
-        // console.log("joining room: " + room);
         socket.join(room);
         users.push({
             username: username,
@@ -26,7 +39,6 @@ io.on('connection', (socket) => {
             id: socket.id
         });
         var roomUsers = users.filter(user => user.room === room);
-        // console.log(roomUsers);
 
         socket.broadcast
             .to(room)
@@ -37,11 +49,13 @@ io.on('connection', (socket) => {
 
     
         io.to(room).emit('roomDetails', roomUsers);
+
+        // emit room counts to homepage
+        io.emit('roomCountIncrement', room);
     });
 
     // listen for messages from client and send them to correct room
     socket.on('chat message', ({ msg, user, room }) => {
-        // console.log(msg + ", emitting");
         io.to(room).emit('message', {
             msg: msg,
             user: user,
@@ -54,13 +68,27 @@ io.on('connection', (socket) => {
         thisUser = users[index];
 
         if(index !== -1) {
-            console.log(users);
             users.splice(index, 1)[0];
-            console.log(users);
             var roomUsers = users.filter(user => user.room === thisUser.room);
             io.to(thisUser.room).emit('roomDetails', roomUsers);
-            return users;
 
+            return users;
+        }
+    });
+
+    socket.on('leaveRoom', () => {
+        var index = users.findIndex(user => user.id === socket.id);
+        thisUser = users[index];
+
+        if(index !== -1) {
+            users.splice(index, 1)[0];
+            var roomUsers = users.filter(user => user.room === thisUser.room);
+            io.to(thisUser.room).emit('roomDetails', roomUsers);
+
+            // emit room counts to homepage
+            io.emit('roomCountDecrement', thisUser.room);
+
+            return users;
         }
     });
 });
