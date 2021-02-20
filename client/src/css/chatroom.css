@@ -134,7 +134,6 @@
     color: #D4D4D4;
 }
 
-
 .new-message-container {
     display: flex;
     align-items: flex-start;
@@ -224,5 +223,128 @@
     }
     .chatroom-messages {
         height: 82%;
+    }
+    .return-button {
+        margin-right: 1em;
+        position: relative;
+        bottom: 0.3%;
+        height: 2.6em;
+        width: 2em;
+    }
+    .group-message .message, .user-message .message {
+        font-size: 1rem;
+    }
+    .chatroom-input input {
+        font-size: 1rem;
+    }
+    .group-message .message-header, .user-message .message-header {
+        font-size: 1rem;
+    }
+    .group-message .message-header span, .user-message .message-header span {
+        font-size: 0.775rem;
+    }
+    .chatroom-input input {
+        width: 90%;
+        position: relative;
+        right: 2%;
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .chatroom {
+        width: 85vw;
+    }
+    .chatroom-input {
+        bottom: 1em;
+    }
+    .chatroom-input input {
+        font-size: 0.75rem;
+    }
+    .return-button {
+        height: 2em;
+        margin-top: 0.6em;
+    }
+    .return-button img {
+        width: 1.75em;
+    }
+    .slideLeftIn {
+        left: 8%;
+    }
+    .chatroom-messages {
+        height: 87%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .chatroom {
+        width: 85vw;
+    }
+    .chatroom-input {
+        bottom: 1em;
+    }
+    .chatroom-input input {
+        font-size: 0.75rem;
+        height: 1.4em;
+        width: 12em;
+    }
+    .return-button {
+        height: 1em;
+        width: 1em;
+        margin-top: 2vh;
+        position: static;
+    }
+    .return-button img {
+        width: 1em;
+    }
+    .slideLeftIn {
+        left: 8%;
+    }
+    #chat-icon {
+        width: 40px;
+    }
+    .chatroom-header p {
+        font-size: 1rem;
+        margin-left: 15%;
+        width: 100px;
+        margin-top: 0.75em;
+    }
+    .chatroom-header button {
+        height: 2.5em;
+        font-size: 0.65rem;
+        margin-top: 2em;
+    }
+    .chatroom-users h1 {
+        font-size: 1rem;
+    }
+    .chatroom-users p {
+        font-size: 0.75rem;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+    }
+    ::-webkit-scrollbar {
+        height: 4px;
+    }
+    .user-message .message {
+        font-size: 0.75rem;
+    }
+    .group-message .message {
+        font-size: 0.75rem;
+    }
+    .group-message .message-header {
+        font-size: 0.75rem;
+    }
+    .user-message .message-header {
+        font-size: 0.75rem;
+    }
+    .group-message .message-header span {
+        font-size: 0.65rem;
+    }
+    .user-message .message-header span {
+        font-size: 0.65rem;
+    }
+    .group-message, .user-message {
+        min-width: 80px;
+        max-width: 55%;
     }
 }
